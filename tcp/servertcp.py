@@ -1,4 +1,6 @@
 import socket
+import random
+import string
 
 server_ip = "127.0.0.1"
 server_port = 12345
@@ -12,25 +14,16 @@ connection, client_address = server_socket.accept()
 
 while True:
     data = connection.recv(1024)
-    lista = [1, 1]
     d = data.decode()
-    n = int(d)
+    def gerar_senha(tamanho=12):
+        caracteres = string.ascii_letters + string.digits + string.punctuation
+        senha = ''.join(random.choice(caracteres) for _ in range(tamanho))
+        return senha
 
-    ultimo = 1
-    penultimo = 1
-    if (n == 1) or (n == 2):
-        lista.append(1)
-    else:
-        count = 3
-        while count <= n:
-            termo = ultimo + penultimo
-            penultimo = ultimo
-            ultimo = termo
-            count += 1
-            lista.append(termo)
+    tamanho_da_senha = int(d)
+    senha_gerada = gerar_senha(tamanho_da_senha)
 
-    response = ' -> '.join(map(str, lista))
-    connection.sendall(response.encode())
+    connection.sendall(senha_gerada.encode())
 
     if not data:
         break

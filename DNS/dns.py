@@ -9,8 +9,8 @@ class SimpleDNS:
         return self.services.get(service_name, "Not Found")
 
 dns_server = SimpleDNS()
-dns_server.register_service("tcp", "127.0.0.1", 12345)
-dns_server.register_service("udp", "127.0.0.1", 54321)
+dns_server.register_service("www.sitemassatcp.com", "127.0.0.1", 12345)
+dns_server.register_service("www.sitemassaudp.com", "127.0.0.1", 54321)
 
 # Cliente solicitando um serviço
 requested_service = input()

@@ -1,5 +1,6 @@
 import socket
-import secrets
+import random
+import string
 
 server_ip = "127.0.0.1"
 server_port = 12345
@@ -12,23 +13,13 @@ print("Servidor UDP aguardando mensagens...")
 while True:
     data, client_address = server_socket.recvfrom(1024)
     d = data.decode()
-    ppt = ['pedra', 'papel', 'tesoura']
-    escolha_aleatoria = secrets.choice(ppt)
-    result = ''
 
-    if d == escolha_aleatoria:
-        result = 'empatou mizeravi'
-    elif d == ppt[0] and escolha_aleatoria == ppt[2]:
-        result = 'tesoura! ganhasse boy, pedra ganha de tesoura'
-    elif d == ppt[0] and escolha_aleatoria == ppt[1]:
-        result = 'papel! hihi perdesse, papel embrulha pedra'
-    elif d == ppt[1] and escolha_aleatoria == ppt[0]:
-        result = 'pedra! você ganhou, papel embrulha pedra'
-    elif d == ppt[1] and escolha_aleatoria == ppt[2]:
-        result = 'tesoura! perdeu playba, tesoura corta papel'
-    elif d == ppt[2] and escolha_aleatoria == ppt[0]:
-        result = 'papel! err você ganhou, tesoura corta papel'
-    elif d == ppt[2] and escolha_aleatoria == ppt[1]:
-        result = 'pedra! kkkk tá sem sorte, pedra quebra tesoura'
+    def gerar_senha(tamanho=12):
+        caracteres = string.ascii_letters + string.digits + string.punctuation
+        senha = ''.join(random.choice(caracteres) for _ in range(tamanho))
+        return senha
 
-    server_socket.sendto(result.encode(), client_address)
+    tamanho_da_senha = int(d)
+    senha_gerada = gerar_senha(tamanho_da_senha)
+
+    server_socket.sendto(senha_gerada.encode(), client_address)
