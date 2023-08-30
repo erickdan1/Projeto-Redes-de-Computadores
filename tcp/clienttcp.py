@@ -2,8 +2,28 @@ import socket
 import time
 
 
-server_ip = "127.0.0.1"
-server_port = 12345
+def query_dns(dns_ip, dns_port, domain_name):
+    client_socket_dns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    client_socket_dns.settimeout(5)  # tempo limite para a resposta
+
+    dn = (domain_name,)
+    q = str(dn)
+    query = q.encode()
+    client_socket_dns.sendto(query, (dns_ip, dns_port))
+
+    try:
+        response, server_address_from_dns = client_socket_dns.recvfrom(1024)
+        if response:
+            return response.decode()
+    except socket.timeout:
+        return "Timeout: O servidor não respondeu a tempo."
+    finally:
+        client_socket_dns.close()
+
+
+busca = "www.sitemassatcp.com"
+
+server_ip, server_port = eval(query_dns('127.0.0.3', 53, busca))
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect((server_ip, server_port))
@@ -11,9 +31,12 @@ client_socket.connect((server_ip, server_port))
 print()
 print("Gerador de Senha")
 print()
-message = input("Digite o tamanho desejado para a senha: ")
+print("Tamanho desejado para a senha: 12")
+
+message = 12
+message_bytes = message.to_bytes(1024, byteorder='big')
 start_time = time.time()
-client_socket.sendall(message.encode())
+client_socket.sendall(message_bytes)
 received_data = client_socket.recv(1024)
 end_time = time.time()
 
