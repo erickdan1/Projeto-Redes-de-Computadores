@@ -6,7 +6,9 @@ def query_dns(dns_ip, dns_port, domain_name):
     client_socket_dns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     client_socket_dns.settimeout(5)  # tempo limite para a resposta
 
-    query = domain_name.encode()
+    dn = (domain_name,)
+    q = str(dn)
+    query = q.encode()
     client_socket_dns.sendto(query, (dns_ip, dns_port))
 
     try:
@@ -21,7 +23,7 @@ def query_dns(dns_ip, dns_port, domain_name):
 
 busca = "www.sitemassaudp.com"
 
-server_ip, server_port = query_dns("127.0.0.3", 53, busca)
+server_ip, server_port = eval(query_dns("127.0.0.3", 53, busca))
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
@@ -31,7 +33,7 @@ print()
 message = 12
 message_bytes = message.to_bytes(1024, byteorder='big')
 start_time = time.time()
-client_socket.sendto(message, (server_ip, server_port))
+client_socket.sendto(message_bytes, (server_ip, server_port))
 received_data, server_address = client_socket.recvfrom(1024)
 end_time = time.time()
 

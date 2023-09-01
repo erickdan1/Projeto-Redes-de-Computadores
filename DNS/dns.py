@@ -16,8 +16,6 @@ class SimpleDNS:
 
 
 dns_server = SimpleDNS()
-# dns_server.register_service("www.sitemassatcp.com", "127.0.0.1", 12345)
-# dns_server.register_service("www.sitemassaudp.com", "127.0.0.2", 54321)
 
 server_ip = "127.0.0.3"
 server_port = 53
