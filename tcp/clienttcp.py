@@ -42,6 +42,5 @@ end_time = time.time()
 
 print("Senha gerada:", received_data.decode())
 print("Tempo total:", end_time - start_time, "segundos")
-print("Tempo de envio:", end_time - start_time, "segundos")
 
 client_socket.close()
