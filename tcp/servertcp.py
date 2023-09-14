@@ -85,7 +85,6 @@ while True:
     if not data:
         break
 
-remove_dns(url_domain)
-
 connection.close()
 print('Conexão TCP encerrada')
+remove_dns(url_domain)
