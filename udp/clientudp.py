@@ -23,7 +23,7 @@ def query_dns(dns_ip, dns_port, domain_name):
 
 busca = "www.sitemassaudp.com"
 
-server_ip, server_port = eval(query_dns("127.0.0.3", 53, busca))
+server_ip, server_port = eval(query_dns("127.0.0.5", 53, busca))
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 

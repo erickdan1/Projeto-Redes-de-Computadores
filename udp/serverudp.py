@@ -5,13 +5,15 @@ import string
 
 url_domain = "www.sitemassaudp.com"
 
-server_ip = "127.0.0.2"
+server_ip = "127.0.0.4"
 server_port = 12345
+
+dns_ip = "127.0.0.5"
+dns_port = 53
 
 # Registrar domínio no servidor DNS
 def registrar_dns(url, s_ip, s_port):
-    dns_ip = "127.0.0.3"
-    dns_port = 53
+    global dns_ip, dns_port
 
     client_socket_dns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     client_socket_dns.settimeout(5)  # tempo limite para a resposta
@@ -35,8 +37,7 @@ def registrar_dns(url, s_ip, s_port):
 
 
 def remove_dns(url):
-    dns_ip = "127.0.0.3"
-    dns_port = 53
+    global dns_ip, dns_port
 
     client_socket_dns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     client_socket_dns.settimeout(5)  # tempo limite para a resposta
@@ -80,4 +81,8 @@ while True:
 
     server_socket.sendto(senha_gerada.encode(), client_address)
 
-    remove_dns(url_domain)
+    server_socket.close()
+    break
+
+print('Servidor Encerrado')
+remove_dns(url_domain)

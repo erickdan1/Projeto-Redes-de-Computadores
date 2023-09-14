@@ -17,7 +17,7 @@ class SimpleDNS:
 
 dns_server = SimpleDNS()
 
-server_ip = "127.0.0.3"
+server_ip = "127.0.0.5"
 server_port = 53
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
