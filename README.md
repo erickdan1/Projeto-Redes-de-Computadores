@@ -1,8 +1,32 @@
-﻿# Projeto-Redes-de-Computadores
+# MultiProtocol-Password-Service
 
-Este código demonstra uma aplicação de sockets cliente-servidor que oferece um serviço de geração de senhas. A aplicação possui duas versões, uma que utiliza o protocolo UDP (User Datagram Protocol) e outra que utiliza o protocolo TCP (Transmission Control Protocol). Além disso, há um servidor DNS simples que registra os domínios dos servidores e recebe requisições dos clientes. Após a conclusão do serviço prestado pelo servidor, seu domínio é removido do servidor DNS.
+Este repositório contém uma aplicação de sockets cliente-servidor desenvolvida para oferecer um serviço de geração de senhas. A aplicação está implementada em duas versões, utilizando os protocolos UDP (User Datagram Protocol) e TCP (Transmission Control Protocol). Além disso, inclui um servidor DNS simples, responsável por registrar os domínios dos servidores e responder às requisições dos clientes. Ao término do serviço, o domínio do servidor é removido do DNS.
 
-Para executar os códigos, somente é necessário ativá-los na ordem correta: primeiro o código para o DNS, depois o código para o servidor e por último o código para o cliente. Também é necessário ativar os códigos de maneira compatível, ou seja tanto o servidor e quanto o cliente como TCP ou os dois como UDP.
+## Visão Geral
 
-Abaixo um infográfico mostrando como os códigos funcionam:
+- **Protocolos Utilizados**: 
+  - **UDP**: Protocolo de comunicação orientado para a velocidade, sem garantias de entrega de pacotes.
+  - **TCP**: Protocolo de comunicação confiável, garantindo a entrega de pacotes na ordem correta.
+
+- **Componentes**:
+  - **Servidor**: Responsável por gerar e enviar senhas para os clientes.
+  - **Cliente**: Envia requisições ao servidor e recebe as senhas geradas.
+  - **Servidor DNS**: Registra e gerencia os domínios dos servidores, além de atender às requisições dos clientes.
+
+## Executando a Aplicação
+
+Para rodar a aplicação, siga a ordem correta de execução:
+
+1. **Servidor DNS**: Inicie o servidor DNS, que será responsável por registrar os domínios dos servidores.
+2. **Servidor**: Inicie o servidor com o protocolo desejado (UDP ou TCP).
+3. **Cliente**: Execute o cliente com o mesmo protocolo do servidor.
+
+**Nota**: Certifique-se de que tanto o servidor quanto o cliente estão configurados para utilizar o mesmo protocolo (ambos UDP ou ambos TCP) para garantir a compatibilidade.
+
+## Funcionamento
+
+Abaixo, um diagrama de fluxo ilustrando o funcionamento da aplicação:
+
 ![Diagrama de fluxo](https://github.com/erickdan1/Projeto-Redes-de-Computadores/assets/115114338/da4f41f0-8ba3-46a2-926e-6457ec77b135)
+
+---
